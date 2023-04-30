@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE2D7F9D29F69A8200FB2DAE /* HelloWorldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2D7F9C29F69A8200FB2DAE /* HelloWorldView.swift */; };
 		FE62A12029ED8D7E006B0AF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE62A11F29ED8D7E006B0AF6 /* AppDelegate.swift */; };
 		FE62A12229ED8D7E006B0AF6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE62A12129ED8D7E006B0AF6 /* SceneDelegate.swift */; };
 		FE62A12429ED8D7E006B0AF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE62A12329ED8D7E006B0AF6 /* ViewController.swift */; };
 		FE62A12729ED8D7E006B0AF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE62A12529ED8D7E006B0AF6 /* Main.storyboard */; };
 		FE62A12929ED8D7F006B0AF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE62A12829ED8D7F006B0AF6 /* Assets.xcassets */; };
 		FE62A12C29ED8D7F006B0AF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE62A12A29ED8D7F006B0AF6 /* LaunchScreen.storyboard */; };
+		FE62A13A29ED8FCF006B0AF6 /* ErrorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE62A13929ED8FCF006B0AF6 /* ErrorPresenter.swift */; };
+		FE7503B929F93D3500FF1E64 /* ScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7503B829F93D3500FF1E64 /* ScriptMessageHandler.swift */; };
+		FE8665F329F97D7400E1FE1A /* TurboNavigator in Frameworks */ = {isa = PBXBuildFile; productRef = FE8665F229F97D7400E1FE1A /* TurboNavigator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE2D7F9C29F69A8200FB2DAE /* HelloWorldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldView.swift; sourceTree = "<group>"; };
 		FE62A11C29ED8D7E006B0AF6 /* CrmMe_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrmMe_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE62A11F29ED8D7E006B0AF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE62A12129ED8D7E006B0AF6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +29,8 @@
 		FE62A12829ED8D7F006B0AF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE62A12B29ED8D7F006B0AF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE62A12D29ED8D7F006B0AF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE62A13929ED8FCF006B0AF6 /* ErrorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPresenter.swift; sourceTree = "<group>"; };
+		FE7503B829F93D3500FF1E64 /* ScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE8665F329F97D7400E1FE1A /* TurboNavigator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +71,9 @@
 				FE62A12829ED8D7F006B0AF6 /* Assets.xcassets */,
 				FE62A12A29ED8D7F006B0AF6 /* LaunchScreen.storyboard */,
 				FE62A12D29ED8D7F006B0AF6 /* Info.plist */,
+				FE62A13929ED8FCF006B0AF6 /* ErrorPresenter.swift */,
+				FE2D7F9C29F69A8200FB2DAE /* HelloWorldView.swift */,
+				FE7503B829F93D3500FF1E64 /* ScriptMessageHandler.swift */,
 			);
 			path = CrmMe_ios;
 			sourceTree = "<group>";
@@ -83,6 +94,9 @@
 			dependencies = (
 			);
 			name = CrmMe_ios;
+			packageProductDependencies = (
+				FE8665F229F97D7400E1FE1A /* TurboNavigator */,
+			);
 			productName = CrmMe_ios;
 			productReference = FE62A11C29ED8D7E006B0AF6 /* CrmMe_ios.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +125,9 @@
 				Base,
 			);
 			mainGroup = FE62A11329ED8D7E006B0AF6;
+			packageReferences = (
+				FE8665F129F97D7400E1FE1A /* XCRemoteSwiftPackageReference "TurboNavigator" */,
+			);
 			productRefGroup = FE62A11D29ED8D7E006B0AF6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +156,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE62A12429ED8D7E006B0AF6 /* ViewController.swift in Sources */,
+				FE2D7F9D29F69A8200FB2DAE /* HelloWorldView.swift in Sources */,
+				FE62A13A29ED8FCF006B0AF6 /* ErrorPresenter.swift in Sources */,
+				FE7503B929F93D3500FF1E64 /* ScriptMessageHandler.swift in Sources */,
 				FE62A12029ED8D7E006B0AF6 /* AppDelegate.swift in Sources */,
 				FE62A12229ED8D7E006B0AF6 /* SceneDelegate.swift in Sources */,
 			);
@@ -358,6 +378,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE8665F129F97D7400E1FE1A /* XCRemoteSwiftPackageReference "TurboNavigator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/williamkennedy/TurboNavigator";
+			requirement = {
+				kind = revision;
+				revision = 2cd4596dc6066d2fa50d1c98c4b7595c9be053d9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE8665F229F97D7400E1FE1A /* TurboNavigator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE8665F129F97D7400E1FE1A /* XCRemoteSwiftPackageReference "TurboNavigator" */;
+			productName = TurboNavigator;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FE62A11429ED8D7E006B0AF6 /* Project object */;
 }

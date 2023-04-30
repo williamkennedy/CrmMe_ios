@@ -3,50 +3,88 @@
 //  CrmMe_ios
 //
 //  Created by William Kennedy on 17/04/2023.
-//
-
+//https://github.com/williamkennedy/TurboNavigator
+import Turbo
+import TurboNavigator
 import UIKit
+import WebKit
+import SafariServices
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
 
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = scene as? UIWindowScene
+        else { fatalError("Expected a UIWindowScene.") }
+
+        createWindow(in: windowScene)
     }
 
-    func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+    private let baseURL = URL(string: "http://localhost:3003")!
+    private lazy var turboNavigator = TurboNavigator(delegate: self, pathConfiguration: pathConfiguration)
+    private lazy var pathConfiguration = PathConfiguration(sources: [
+        .server(baseURL.appending(path: "/turbo/ios/path_configuration"))
+    ])
+    
+
+    private func createWindow(in windowScene: UIWindowScene) {
+        let window = UIWindow(windowScene: windowScene)
+        window.backgroundColor = .white
+        self.window = window
+
+        TurboConfig.shared.makeCustomWebView = {
+            let sharedProcessPool = WKProcessPool()
+            let scriptMessageHandler = ScriptMessageHandler()
+            let configuration = WKWebViewConfiguration()
+            configuration.applicationNameForUserAgent = TurboConfig.shared.userAgent
+            configuration.processPool = sharedProcessPool
+            configuration.userContentController.add(scriptMessageHandler, name: "nativeApp")
+            return WKWebView(frame: .zero, configuration: configuration)
+        }
+
+
+        window.makeKeyAndVisible()
+        window.rootViewController = turboNavigator.rootViewController
+
+        turboNavigator.route(baseURL)
+    }
+}
+
+extension SceneDelegate: TurboNavigationDelegate, ScriptMessageDelegate {
+    func session(_ session: Session, didFailRequestForVisitable visitable: Visitable, error: Error) {
+        if let errorPresenter = visitable as? ErrorPresenter {
+            errorPresenter.presentError(error) {
+                session.reload()
+            }
+        }
     }
 
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
+    func controller(_ controller: VisitableViewController, forProposal proposal: VisitProposal) -> UIViewController? {
+        if proposal.url.absoluteString == "\(baseURL)/hello_world" {
+            return HelloWorldController()
+        } else {
+            return controller
+        }
     }
 
 
+    func importContacts(_ name: String) {
+        self.turboNavigator.session.webView.evaluateJavaScript("Bridge.importingContacts('\(name)')")
+        self.turboNavigator.modalSession.webView.evaluateJavaScript("Bridge.importingContacts('\(name)')")
+    }
+}
+
+class HelloWorldController: UIHostingController<HelloWorldView> {
+    init() {
+       super.init(rootView: HelloWorldView())
+     }
+
+     @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+       fatalError("init(coder:) has not been implemented")
+     }
 }
 
