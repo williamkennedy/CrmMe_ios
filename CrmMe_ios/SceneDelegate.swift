@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private let baseURL = URL(string: "http://localhost:3003")!
-    private lazy var turboNavigator = TurboNavigator(delegate: self, pathConfiguration: pathConfiguration)
+    private lazy var turboNavigator = TurboNavigator(delegate: self, pathConfiguration: nil)
     private lazy var pathConfiguration = PathConfiguration(sources: [
         .server(baseURL.appending(path: "/turbo/ios/path_configuration"))
     ])
@@ -39,6 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         TurboConfig.shared.makeCustomWebView = {
             let sharedProcessPool = WKProcessPool()
             let scriptMessageHandler = ScriptMessageHandler()
+            scriptMessageHandler.delegate = self
             let configuration = WKWebViewConfiguration()
             configuration.applicationNameForUserAgent = TurboConfig.shared.userAgent
             configuration.processPool = sharedProcessPool
