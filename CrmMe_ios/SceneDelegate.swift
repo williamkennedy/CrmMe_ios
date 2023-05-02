@@ -25,7 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private let baseURL = URL(string: "http://localhost:3003")!
-    private lazy var turboNavigator = TurboNavigator(delegate: self, pathConfiguration: nil)
+    private lazy var turboNavigator = TurboNavigator(delegate: self, pathConfiguration: pathConfiguration)
     private lazy var pathConfiguration = PathConfiguration(sources: [
         .server(baseURL.appending(path: "/turbo/ios/path_configuration"))
     ])
