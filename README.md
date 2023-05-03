@@ -3,3 +3,15 @@ This is part of a talk that I'm giving for Ruby Ireland. Slides can be found [he
 IOS project can be found [here](https://github.com/williamkennedy/CrmMe_ios).
 Android can be found [here](https://github.com/williamkennedy/CrmMeAndroid).
 Rails project can be found [here](https://github.com/williamkennedy/crm_me).
+
+To start the project
+
+```
+cd crm_me && bin/dev -p 3003
+```
+
+In Xcode, `Product > Run`
+
+In Android Studio `Run > Run`
+
+
