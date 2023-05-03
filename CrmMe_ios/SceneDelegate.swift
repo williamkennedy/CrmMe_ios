@@ -65,7 +65,7 @@ extension SceneDelegate: TurboNavigationDelegate, ScriptMessageDelegate {
     }
 
     func controller(_ controller: VisitableViewController, forProposal proposal: VisitProposal) -> UIViewController? {
-        if proposal.url.absoluteString == "\(baseURL)/hello_world" {
+        if proposal.url.path == "/hello_world" {
             return HelloWorldController()
         } else {
             return controller
